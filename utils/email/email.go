@@ -1,4 +1,4 @@
-package util
+package email
 
 import (
 	"fmt"
@@ -47,12 +47,13 @@ func SaveEmailVerification(email string, code int) (err error) {
 		return
 	}
 	//设置
-	_, err = conn.Do("Set", email, code)
+	key := "email:" + email
+	_, err = conn.Do("Set", key, code)
 	if err != nil {
 		return err
 	}
-	//30分钟过期
-	_, err = conn.Do("expire", email, 1800)
+	//3分钟过期
+	_, err = conn.Do("expire", key, 180)
 	if err != nil {
 		return err
 	}
@@ -67,7 +68,7 @@ func ReadVerificationByEmail(email string) (code string, err error) {
 	if err != nil {
 		return
 	}
-	code, err = redis.String(conn.Do("Get", email))
+	code, err = redis.String(conn.Do("Get", "email:"+email))
 	if err != nil {
 		return
 	}

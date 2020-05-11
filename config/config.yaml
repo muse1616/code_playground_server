@@ -5,3 +5,9 @@ email:
 redis:
   address : "127.0.0.1:6379"
   password : ""
+mysql:
+  username : "root"
+  password : "19991116hjj"
+  address : "127.0.0.1:3306"
+  dbName : "codep"
+
