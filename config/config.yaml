@@ -1,0 +1,7 @@
+email:
+  username : "1922330886@qq.com"
+  password : "wwoqjkjmdetqfdfb"
+  host : "smtp.qq.com"
+redis:
+  address : "127.0.0.1:6379"
+  password : ""
